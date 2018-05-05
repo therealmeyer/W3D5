@@ -59,8 +59,8 @@ class SQLObject
   def initialize(params = {})
     params.each do |k,v|
       k = k.to_sym
-      unless self.columns.include?(k)
-        raise 'not a column'
+      unless self.class.columns.include?(k)
+        raise "unknown attribute #{k}"
       end
       self.send("#{k}=", v)
     end
